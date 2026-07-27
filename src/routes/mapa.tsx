@@ -110,16 +110,17 @@ function MapaPage() {
           <footer className="flex flex-wrap items-center gap-4 border-t border-border px-4 py-2.5 text-xs text-muted-foreground">
             <span>Legenda:</span>
             {[
-              ["critico", "Crítico"],
-              ["alto", "Alto"],
-              ["moderado", "Moderado"],
-              ["baixo", "Estável"],
-            ].map(([k, label]) => (
-              <span key={k} className="inline-flex items-center gap-1.5">
-                <span className={`size-2 rounded-full bg-${k}`} />
+              ["bg-critico", "Crítico"],
+              ["bg-alto", "Alto"],
+              ["bg-moderado", "Moderado"],
+              ["bg-baixo", "Estável"],
+            ].map(([klass, label]) => (
+              <span key={label} className="inline-flex items-center gap-1.5">
+                <span className={`size-2 rounded-full ${klass}`} />
                 {label}
               </span>
             ))}
+
             <span className="ml-auto">Representação esquemática · dados fictícios</span>
           </footer>
         </section>
