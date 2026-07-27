@@ -1,0 +1,555 @@
+// Dados mockados / fictícios da Ilha do Recife para o MVP "Ilha Inteligente".
+// Nenhuma integração externa: tudo é gerado localmente e é plausível, não real.
+
+export type Tema = "alagamento" | "calor" | "arborizacao" | "patrimonio";
+
+export type PerfilId = "meio-ambiente" | "patrimonio" | "defesa-civil" | "mobilidade";
+
+export interface Perfil {
+  id: PerfilId;
+  nome: string;
+  secretaria: string;
+  temasPrioritarios: Tema[];
+}
+
+export const PERFIS: Perfil[] = [
+  {
+    id: "meio-ambiente",
+    nome: "Meio Ambiente",
+    secretaria: "Secretaria de Meio Ambiente e Sustentabilidade",
+    temasPrioritarios: ["arborizacao", "calor", "alagamento", "patrimonio"],
+  },
+  {
+    id: "patrimonio",
+    nome: "Patrimônio Histórico",
+    secretaria: "Secretaria de Cultura e Patrimônio",
+    temasPrioritarios: ["patrimonio", "alagamento", "calor", "arborizacao"],
+  },
+  {
+    id: "defesa-civil",
+    nome: "Defesa Civil",
+    secretaria: "Coordenadoria Municipal de Defesa Civil",
+    temasPrioritarios: ["alagamento", "calor", "patrimonio", "arborizacao"],
+  },
+  {
+    id: "mobilidade",
+    nome: "Mobilidade",
+    secretaria: "Autarquia de Mobilidade Urbana",
+    temasPrioritarios: ["alagamento", "calor", "arborizacao", "patrimonio"],
+  },
+];
+
+export const TEMAS: Record<
+  Tema,
+  { nome: string; unidade: string; descricao: string; corVar: string }
+> = {
+  alagamento: {
+    nome: "Alagamento",
+    unidade: "índice de risco",
+    descricao: "Risco de acúmulo de água em vias e edificações",
+    corVar: "var(--tema-alagamento)",
+  },
+  calor: {
+    nome: "Calor urbano",
+    unidade: "°C aparente",
+    descricao: "Ilhas de calor medidas em nível de rua",
+    corVar: "var(--tema-calor)",
+  },
+  arborizacao: {
+    nome: "Arborização",
+    unidade: "% cobertura",
+    descricao: "Cobertura arbórea e sombreamento de calçadas",
+    corVar: "var(--tema-arborizacao)",
+  },
+  patrimonio: {
+    nome: "Patrimônio",
+    unidade: "estado de conservação",
+    descricao: "Conservação de fachadas e bens tombados",
+    corVar: "var(--tema-patrimonio)",
+  },
+};
+
+export type Severidade = "critico" | "alto" | "moderado" | "baixo";
+
+export interface Ponto {
+  id: string;
+  nome: string;
+  bairro: string;
+  /** coordenadas no sistema do mapa esquemático (0-100) */
+  x: number;
+  y: number;
+  tema: Tema;
+  /** valor principal do indicador */
+  valor: number;
+  severidade: Severidade;
+  detalhe: string;
+  fonte: string;
+  atualizadoEm: string;
+}
+
+export const BAIRROS = [
+  "Bairro do Recife",
+  "Boa Vista",
+  "Santo Antônio",
+  "São José",
+  "Cabanga",
+] as const;
+
+export const PONTOS: Ponto[] = [
+  // --- Alagamento ---
+  {
+    id: "al-1",
+    nome: "Rua do Bom Jesus",
+    bairro: "Bairro do Recife",
+    x: 62,
+    y: 26,
+    tema: "alagamento",
+    valor: 87,
+    severidade: "critico",
+    detalhe:
+      "Cota baixa e galeria com assoreamento. Registro de lâmina d'água de 28 cm na última maré de sizígia.",
+    fonte: "Drone RC-02 + sensor de nível",
+    atualizadoEm: "há 40 min",
+  },
+  {
+    id: "al-2",
+    nome: "Cais do Apolo",
+    bairro: "Bairro do Recife",
+    x: 48,
+    y: 18,
+    tema: "alagamento",
+    valor: 74,
+    severidade: "alto",
+    detalhe: "Refluxo pela rede pluvial em maré alta combinada com chuva acima de 30 mm/h.",
+    fonte: "Bike Gira #1187",
+    atualizadoEm: "há 1 h",
+  },
+  {
+    id: "al-3",
+    nome: "Av. Dantas Barreto",
+    bairro: "Santo Antônio",
+    x: 40,
+    y: 58,
+    tema: "alagamento",
+    valor: 52,
+    severidade: "moderado",
+    detalhe: "Bocas de lobo parcialmente obstruídas em três quarteirões.",
+    fonte: "Drone RC-05",
+    atualizadoEm: "há 3 h",
+  },
+  {
+    id: "al-4",
+    nome: "Cais José Estelita",
+    bairro: "São José",
+    x: 30,
+    y: 76,
+    tema: "alagamento",
+    valor: 31,
+    severidade: "baixo",
+    detalhe: "Drenagem recém-revisada, escoamento dentro do esperado.",
+    fonte: "Bike Gira #0942",
+    atualizadoEm: "há 2 h",
+  },
+
+  // --- Calor urbano ---
+  {
+    id: "ca-1",
+    nome: "Praça do Marco Zero",
+    bairro: "Bairro do Recife",
+    x: 68,
+    y: 36,
+    tema: "calor",
+    valor: 41.2,
+    severidade: "critico",
+    detalhe: "Superfície pavimentada extensa, sombreamento inferior a 8% ao meio-dia.",
+    fonte: "Drone térmico RC-02",
+    atualizadoEm: "há 55 min",
+  },
+  {
+    id: "ca-2",
+    nome: "Av. Rio Branco",
+    bairro: "Bairro do Recife",
+    x: 56,
+    y: 30,
+    tema: "calor",
+    valor: 38.4,
+    severidade: "alto",
+    detalhe: "Corredor com asfalto escuro e pouca ventilação cruzada à tarde.",
+    fonte: "Bike Gira #1187",
+    atualizadoEm: "há 1 h",
+  },
+  {
+    id: "ca-3",
+    nome: "Rua da Aurora",
+    bairro: "Boa Vista",
+    x: 20,
+    y: 44,
+    tema: "calor",
+    valor: 34.6,
+    severidade: "moderado",
+    detalhe: "Brisa fluvial reduz sensação térmica, mas calçada sul tem sombra irregular.",
+    fonte: "Bike Gira #0771",
+    atualizadoEm: "há 2 h",
+  },
+  {
+    id: "ca-4",
+    nome: "Parque das Graças",
+    bairro: "Boa Vista",
+    x: 12,
+    y: 32,
+    tema: "calor",
+    valor: 30.1,
+    severidade: "baixo",
+    detalhe: "Massa arbórea densa mantém temperatura 4,8 °C abaixo do entorno.",
+    fonte: "Drone térmico RC-05",
+    atualizadoEm: "há 4 h",
+  },
+
+  // --- Arborização ---
+  {
+    id: "ar-1",
+    nome: "Rua do Apolo",
+    bairro: "Bairro do Recife",
+    x: 54,
+    y: 22,
+    tema: "arborizacao",
+    valor: 6,
+    severidade: "critico",
+    detalhe: "Apenas 4 exemplares adultos em 800 m de via; calçadas sem sombreamento.",
+    fonte: "Visão computacional — bikes",
+    atualizadoEm: "há 1 h",
+  },
+  {
+    id: "ar-2",
+    nome: "Praça do Arsenal",
+    bairro: "Bairro do Recife",
+    x: 64,
+    y: 20,
+    tema: "arborizacao",
+    valor: 18,
+    severidade: "alto",
+    detalhe: "Cobertura concentrada em canteiro central; 12 covas vazias mapeadas.",
+    fonte: "Drone RC-02",
+    atualizadoEm: "há 3 h",
+  },
+  {
+    id: "ar-3",
+    nome: "Av. Guararapes",
+    bairro: "Santo Antônio",
+    x: 36,
+    y: 50,
+    tema: "arborizacao",
+    valor: 27,
+    severidade: "moderado",
+    detalhe: "Espécies de pequeno porte, copa jovem com baixo índice de sombra.",
+    fonte: "Bike Gira #0942",
+    atualizadoEm: "há 5 h",
+  },
+  {
+    id: "ar-4",
+    nome: "Parque 13 de Maio (borda)",
+    bairro: "Boa Vista",
+    x: 10,
+    y: 40,
+    tema: "arborizacao",
+    valor: 63,
+    severidade: "baixo",
+    detalhe: "Cobertura consolidada, manutenção preventiva de poda em dia.",
+    fonte: "Drone RC-05",
+    atualizadoEm: "há 6 h",
+  },
+
+  // --- Patrimônio ---
+  {
+    id: "pa-1",
+    nome: "Casario da Rua da Moeda",
+    bairro: "Bairro do Recife",
+    x: 60,
+    y: 32,
+    tema: "patrimonio",
+    valor: 34,
+    severidade: "critico",
+    detalhe:
+      "Umidade ascendente e destacamento de reboco em 3 fachadas tombadas. Agravado por alagamentos recorrentes.",
+    fonte: "Fotogrametria por drone",
+    atualizadoEm: "há 1 h",
+  },
+  {
+    id: "pa-2",
+    nome: "Forte das Cinco Pontas",
+    bairro: "São José",
+    x: 34,
+    y: 70,
+    tema: "patrimonio",
+    valor: 52,
+    severidade: "alto",
+    detalhe: "Manchas de salinização na alvenaria histórica e drenagem perimetral deficiente.",
+    fonte: "Drone RC-05",
+    atualizadoEm: "há 4 h",
+  },
+  {
+    id: "pa-3",
+    nome: "Igreja Madre de Deus",
+    bairro: "Bairro do Recife",
+    x: 58,
+    y: 24,
+    tema: "patrimonio",
+    valor: 68,
+    severidade: "moderado",
+    detalhe: "Fissuras superficiais monitoradas; sem evolução nos últimos 90 dias.",
+    fonte: "Fotogrametria por drone",
+    atualizadoEm: "há 2 dias",
+  },
+  {
+    id: "pa-4",
+    nome: "Teatro Santa Isabel",
+    bairro: "Santo Antônio",
+    x: 26,
+    y: 54,
+    tema: "patrimonio",
+    valor: 84,
+    severidade: "baixo",
+    detalhe: "Restauro concluído em 2024, conservação estável.",
+    fonte: "Vistoria técnica + drone",
+    atualizadoEm: "há 1 dia",
+  },
+];
+
+export interface Indicador {
+  tema: Tema;
+  titulo: string;
+  valor: string;
+  descricao: string;
+  variacao: number;
+  severidade: Severidade;
+}
+
+export const INDICADORES: Indicador[] = [
+  {
+    tema: "alagamento",
+    titulo: "Risco de alagamento",
+    valor: "Alto",
+    descricao: "6 de 24 trechos monitorados em risco elevado nas próximas 48 h",
+    variacao: 12,
+    severidade: "alto",
+  },
+  {
+    tema: "calor",
+    titulo: "Índice de calor urbano",
+    valor: "38,4 °C",
+    descricao: "Média aparente das 14 h nos corredores da ilha",
+    variacao: 3,
+    severidade: "alto",
+  },
+  {
+    tema: "arborizacao",
+    titulo: "Cobertura arbórea",
+    valor: "18,6 %",
+    descricao: "Meta municipal para a área central: 25 % até 2028",
+    variacao: -2,
+    severidade: "moderado",
+  },
+  {
+    tema: "patrimonio",
+    titulo: "Bens em atenção",
+    valor: "9 imóveis",
+    descricao: "Bens tombados com sinal de degradação acelerada",
+    variacao: 2,
+    severidade: "critico",
+  },
+];
+
+export interface Alerta {
+  id: string;
+  tema: Tema;
+  severidade: Severidade;
+  titulo: string;
+  corpo: string;
+  quando: string;
+  local: string;
+}
+
+export const ALERTAS: Alerta[] = [
+  {
+    id: "alerta-1",
+    tema: "alagamento",
+    severidade: "critico",
+    titulo: "Rua do Bom Jesus com risco elevado nas próximas 48 h",
+    corpo:
+      "Combinação de maré de sizígia (2,4 m) e previsão de 45 mm de chuva. Modelo estima lâmina d'água de até 30 cm.",
+    quando: "há 40 min",
+    local: "Bairro do Recife",
+  },
+  {
+    id: "alerta-2",
+    tema: "patrimonio",
+    severidade: "critico",
+    titulo: "Degradação acelerada no casario da Rua da Moeda",
+    corpo:
+      "Fotogrametria detectou avanço de 11% na área com destacamento de reboco em relação ao voo anterior.",
+    quando: "há 1 h",
+    local: "Bairro do Recife",
+  },
+  {
+    id: "alerta-3",
+    tema: "calor",
+    severidade: "alto",
+    titulo: "Ilha de calor persistente no Marco Zero",
+    corpo:
+      "Sete dias consecutivos acima de 40 °C aparentes às 14 h. Sombreamento atual inferior a 8%.",
+    quando: "há 55 min",
+    local: "Bairro do Recife",
+  },
+  {
+    id: "alerta-4",
+    tema: "arborizacao",
+    severidade: "alto",
+    titulo: "12 covas vazias mapeadas na Praça do Arsenal",
+    corpo: "Visão computacional das bikes Gira identificou covas aptas para replantio imediato.",
+    quando: "há 3 h",
+    local: "Bairro do Recife",
+  },
+  {
+    id: "alerta-5",
+    tema: "alagamento",
+    severidade: "moderado",
+    titulo: "Bocas de lobo obstruídas na Av. Dantas Barreto",
+    corpo: "Três quarteirões com obstrução parcial identificada por câmera embarcada.",
+    quando: "há 3 h",
+    local: "Santo Antônio",
+  },
+  {
+    id: "alerta-6",
+    tema: "patrimonio",
+    severidade: "alto",
+    titulo: "Salinização avança no Forte das Cinco Pontas",
+    corpo: "Drenagem perimetral deficiente mantém umidade na base da alvenaria histórica.",
+    quando: "há 4 h",
+    local: "São José",
+  },
+];
+
+export interface Frota {
+  tipo: string;
+  ativos: number;
+  cobertura: string;
+  ultimaColeta: string;
+}
+
+export const FROTA: Frota[] = [
+  { tipo: "Drones", ativos: 6, cobertura: "82% da ilha", ultimaColeta: "há 40 min" },
+  { tipo: "Bikes Gira com sensores", ativos: 34, cobertura: "61 km de vias", ultimaColeta: "há 12 min" },
+  { tipo: "Sensores fixos de nível", ativos: 18, cobertura: "9 pontos críticos", ultimaColeta: "há 5 min" },
+];
+
+// ---- Simulador de intervenções -------------------------------------------
+
+export interface Intervencao {
+  id: string;
+  nome: string;
+  descricao: string;
+  temaAlvo: Tema;
+  prazo: string;
+  custo: string;
+  /** impacto estimado por tema, em pontos percentuais do indicador */
+  impacto: Partial<Record<Tema, number>>;
+}
+
+export const INTERVENCOES: Intervencao[] = [
+  {
+    id: "plantio",
+    nome: "Plantio arbóreo em calçada",
+    descricao: "Implantação de 40 exemplares de porte médio com canteiro drenante.",
+    temaAlvo: "arborizacao",
+    prazo: "4 meses",
+    custo: "R$ 380 mil",
+    impacto: { arborizacao: 22, calor: -18, alagamento: -9, patrimonio: 3 },
+  },
+  {
+    id: "drenagem",
+    nome: "Obra de drenagem profunda",
+    descricao: "Ampliação de galeria e substituição de bocas de lobo por modelo de alta captação.",
+    temaAlvo: "alagamento",
+    prazo: "11 meses",
+    custo: "R$ 4,2 mi",
+    impacto: { alagamento: -41, patrimonio: 14, calor: -2, arborizacao: 0 },
+  },
+  {
+    id: "piso-frio",
+    nome: "Pavimento frio e sombreamento",
+    descricao: "Piso de alta refletância e pergolado vegetado em praça seca.",
+    temaAlvo: "calor",
+    prazo: "6 meses",
+    custo: "R$ 1,1 mi",
+    impacto: { calor: -26, arborizacao: 8, alagamento: -5, patrimonio: 2 },
+  },
+  {
+    id: "fachada",
+    nome: "Restauração de fachada tombada",
+    descricao: "Tratamento de umidade ascendente, recomposição de reboco e pintura mineral.",
+    temaAlvo: "patrimonio",
+    prazo: "8 meses",
+    custo: "R$ 2,6 mi",
+    impacto: { patrimonio: 38, alagamento: 0, calor: 0, arborizacao: 0 },
+  },
+  {
+    id: "jardim-chuva",
+    nome: "Jardim de chuva",
+    descricao: "Canteiro infiltrante com vegetação nativa ao longo do meio-fio.",
+    temaAlvo: "alagamento",
+    prazo: "3 meses",
+    custo: "R$ 240 mil",
+    impacto: { alagamento: -19, arborizacao: 11, calor: -7, patrimonio: 4 },
+  },
+];
+
+export interface ResultadoSimulacao {
+  tema: Tema;
+  antes: number;
+  depois: number;
+  rotulo: string;
+}
+
+const clamp = (n: number) => Math.max(0, Math.min(100, n));
+
+/** Estado base (0-100) de um ponto para cada tema, derivado dos dados mockados do bairro. */
+export function estadoBase(bairro: string): Record<Tema, number> {
+  const doBairro = (tema: Tema) => {
+    const p = PONTOS.filter((x) => x.bairro === bairro && x.tema === tema);
+    if (!p.length) return 45;
+    const media = p.reduce((s, x) => s + x.valor, 0) / p.length;
+    return tema === "calor" ? clamp((media - 26) * 6) : clamp(media);
+  };
+  return {
+    alagamento: Math.round(doBairro("alagamento")),
+    calor: Math.round(doBairro("calor")),
+    arborizacao: Math.round(doBairro("arborizacao")),
+    patrimonio: Math.round(doBairro("patrimonio")),
+  };
+}
+
+export function simular(bairro: string, intervencao: Intervencao): ResultadoSimulacao[] {
+  const base = estadoBase(bairro);
+  return (Object.keys(base) as Tema[]).map((tema) => {
+    const delta = intervencao.impacto[tema] ?? 0;
+    return {
+      tema,
+      antes: base[tema],
+      depois: clamp(Math.round(base[tema] + delta)),
+      rotulo: rotuloTema(tema),
+    };
+  });
+}
+
+export function rotuloTema(tema: Tema) {
+  return TEMAS[tema].nome;
+}
+
+/** Para alagamento e calor, menor é melhor. Para arborização e patrimônio, maior é melhor. */
+export function menorEhMelhor(tema: Tema) {
+  return tema === "alagamento" || tema === "calor";
+}
+
+export function severidadeLabel(s: Severidade) {
+  return { critico: "Crítico", alto: "Alto", moderado: "Moderado", baixo: "Estável" }[s];
+}
