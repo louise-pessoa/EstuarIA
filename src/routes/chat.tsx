@@ -148,8 +148,10 @@ function ChatPage() {
               {perfil.temasPrioritarios.slice(0, 2).map((t) => (
                 <span key={t} className="mr-2 inline-flex items-center gap-1.5">
                   <span className={`size-2 rounded-full ${TEMA_DOT[t]}`} />
+                  <span className="text-foreground">{TEMAS[t].nome}</span>
                 </span>
               ))}
+
             </p>
             <p className="mt-3">
               Simulações citadas no chat podem ser abertas no{" "}
