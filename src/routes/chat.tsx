@@ -4,6 +4,7 @@ import { AppShell } from "@/components/AppShell";
 import { TEMA_DOT } from "@/components/SeverityBadge";
 import { usePerfil } from "@/lib/perfil-context";
 import { responderMock, type MensagemChat } from "@/lib/chat-mock";
+import { TEMAS } from "@/lib/ilha-data";
 import { cn } from "@/lib/utils";
 import { Link } from "@tanstack/react-router";
 import { Send, Radar } from "lucide-react";
