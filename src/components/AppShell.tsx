@@ -14,8 +14,10 @@ import type { ReactNode } from "react";
 const NAV = [
   { to: "/", label: "Dashboard" },
   { to: "/mapa", label: "Mapa & Simulador" },
+  { to: "/calendario", label: "Calendário" },
   { to: "/chat", label: "Copiloto IA" },
 ] as const;
+
 
 export function AppShell({ children }: { children: ReactNode }) {
   const { perfil, setPerfilId } = usePerfil();
