@@ -2,9 +2,15 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { AppShell } from "@/components/AppShell";
 import { SeverityBadge, TEMA_DOT, TEMA_TEXT } from "@/components/SeverityBadge";
+import {
+  GraficoBairros,
+  GraficoServicos,
+  ResumoConflitos,
+} from "@/components/DashboardCharts";
 import { usePerfil } from "@/lib/perfil-context";
 import { ALERTAS, FROTA, INDICADORES, PONTOS, TEMAS, type Tema } from "@/lib/ilha-data";
-import { ArrowDownRight, ArrowUpRight, MapPinned, MessageSquareText } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, CalendarDays, MapPinned, MessageSquareText } from "lucide-react";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
