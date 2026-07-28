@@ -62,11 +62,18 @@ function Dashboard() {
             <MapPinned className="size-4" /> Abrir mapa
           </Link>
           <Link
+            to="/calendario"
+            className="inline-flex items-center gap-2 rounded-sm border border-border bg-card px-3.5 py-2 text-sm font-medium transition-colors hover:bg-secondary"
+          >
+            <CalendarDays className="size-4" /> Calendário
+          </Link>
+          <Link
             to="/chat"
             className="inline-flex items-center gap-2 rounded-sm border border-border bg-card px-3.5 py-2 text-sm font-medium transition-colors hover:bg-secondary"
           >
             <MessageSquareText className="size-4" /> Copiloto
           </Link>
+
         </div>
       </div>
 
