@@ -2,9 +2,15 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { AppShell } from "@/components/AppShell";
 import { SeverityBadge, TEMA_DOT, TEMA_TEXT } from "@/components/SeverityBadge";
+import {
+  GraficoBairros,
+  GraficoServicos,
+  ResumoConflitos,
+} from "@/components/DashboardCharts";
 import { usePerfil } from "@/lib/perfil-context";
 import { ALERTAS, FROTA, INDICADORES, PONTOS, TEMAS, type Tema } from "@/lib/ilha-data";
-import { ArrowDownRight, ArrowUpRight, MapPinned, MessageSquareText } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, CalendarDays, MapPinned, MessageSquareText } from "lucide-react";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -56,11 +62,18 @@ function Dashboard() {
             <MapPinned className="size-4" /> Abrir mapa
           </Link>
           <Link
+            to="/calendario"
+            className="inline-flex items-center gap-2 rounded-sm border border-border bg-card px-3.5 py-2 text-sm font-medium transition-colors hover:bg-secondary"
+          >
+            <CalendarDays className="size-4" /> Calendário
+          </Link>
+          <Link
             to="/chat"
             className="inline-flex items-center gap-2 rounded-sm border border-border bg-card px-3.5 py-2 text-sm font-medium transition-colors hover:bg-secondary"
           >
             <MessageSquareText className="size-4" /> Copiloto
           </Link>
+
         </div>
       </div>
 
@@ -92,6 +105,14 @@ function Dashboard() {
           </article>
         ))}
       </section>
+
+      <section className="mt-6 grid gap-5 lg:grid-cols-[1.4fr_1fr_0.7fr]">
+        <GraficoBairros />
+        <GraficoServicos />
+        <ResumoConflitos />
+      </section>
+
+
 
       <div className="mt-6 grid gap-5 lg:grid-cols-[1.6fr_1fr]">
         <section className="rounded-md border border-border bg-card shadow-panel">
