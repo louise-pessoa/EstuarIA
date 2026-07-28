@@ -106,6 +106,14 @@ function Dashboard() {
         ))}
       </section>
 
+      <section className="mt-6 grid gap-5 lg:grid-cols-[1.4fr_1fr_0.7fr]">
+        <GraficoBairros />
+        <GraficoServicos />
+        <ResumoConflitos />
+      </section>
+
+
+
       <div className="mt-6 grid gap-5 lg:grid-cols-[1.6fr_1fr]">
         <section className="rounded-md border border-border bg-card shadow-panel">
           <header className="flex items-center justify-between border-b border-border px-4 py-3">
