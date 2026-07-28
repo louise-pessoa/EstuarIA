@@ -48,7 +48,7 @@ function ChatPage() {
     () => ({
       id: "inicial",
       autor: "ia",
-      texto: `Olá. Sou o copiloto do gêmeo digital da Ilha do Recife. Estou com a visão de ${perfil.nome} carregada e posso responder sobre alagamento, calor urbano, arborização e patrimônio — ou simular uma intervenção que você descrever.`,
+      texto: `Olá. Sou o copiloto da plataforma de monitoramento da Ilha do Recife. Estou com a visão de ${perfil.nome} carregada e posso responder sobre alagamento, calor urbano, arborização e patrimônio — ou simular uma intervenção que você descrever.`,
     }),
     [perfil.nome],
   );
@@ -158,7 +158,7 @@ function ChatPage() {
               ))}
               {pensando && (
                 <p className="animate-pulse text-sm text-muted-foreground">
-                  Consultando o gêmeo digital…
+                  Consultando os dados da ilha…
                 </p>
               )}
               <div ref={fimRef} />

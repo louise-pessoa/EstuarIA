@@ -35,7 +35,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                 Ilha Inteligente
               </span>
               <span className="block text-[11px] text-sidebar-foreground/65">
-                Prefeitura do Recife · Gêmeo digital urbano
+                Prefeitura do Recife · Monitoramento urbano
               </span>
             </span>
           </Link>

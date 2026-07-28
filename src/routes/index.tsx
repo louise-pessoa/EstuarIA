@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Monitoramento e simulação de riscos climáticos e urbanos na Ilha do Recife com gêmeo digital.",
+          "Monitoramento e simulação de riscos climáticos e urbanos na Ilha do Recife.",
       },
     ],
   }),
@@ -50,7 +50,7 @@ function Dashboard() {
           <h1 className="mt-1 text-2xl font-semibold">Visão consolidada da Ilha do Recife</h1>
           <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
             Dados capturados por frota multimodal (drones e bikes Gira com câmeras e sensores) e
-            processados no gêmeo digital. Painel priorizado para{" "}
+            processados na plataforma de monitoramento. Painel priorizado para{" "}
             <span className={TEMA_TEXT[destaque]}>{TEMAS[destaque].nome.toLowerCase()}</span>.
           </p>
         </div>

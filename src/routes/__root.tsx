@@ -79,14 +79,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Ilha Inteligente — Gêmeo digital da Ilha do Recife" },
+      { title: "Ilha Inteligente — Monitoramento urbano da Ilha do Recife" },
       {
         name: "description",
         content:
           "Plataforma de apoio à decisão para gestores públicos: monitoramento e simulação de riscos climáticos e urbanos na Ilha do Recife.",
       },
       { name: "author", content: "Prefeitura do Recife" },
-      { property: "og:title", content: "Ilha Inteligente — Gêmeo digital da Ilha do Recife" },
+      { property: "og:title", content: "Ilha Inteligente — Monitoramento urbano da Ilha do Recife" },
       {
         property: "og:description",
         content:

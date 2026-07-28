@@ -251,7 +251,7 @@ function MapaPage() {
                     })}
                   </ul>
                   <p className="mt-3 border-t border-border pt-2 text-xs text-muted-foreground">
-                    Estimativas do gêmeo digital sobre dados fictícios. Não substituem estudo
+                    Estimativas da plataforma sobre dados fictícios. Não substituem estudo
                     técnico executivo.
                   </p>
                 </div>

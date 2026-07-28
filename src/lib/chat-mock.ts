@@ -83,7 +83,7 @@ export function responderMock(pergunta: string, perfil: Perfil): MensagemChat {
     return {
       id,
       autor: "ia",
-      texto: `Simulei "${intervencao.nome}" em ${local} no gêmeo digital.\n\nO cenário estimado indica variação de ${Math.abs(principal)} pontos no indicador de ${TEMAS[intervencao.temaAlvo].nome.toLowerCase()}, com efeitos secundários nas demais camadas. Prazo típico de execução: ${intervencao.prazo}; custo referencial: ${intervencao.custo}. Estado atual do indicador principal: ${base[intervencao.temaAlvo]}/100.`,
+      texto: `Simulei "${intervencao.nome}" em ${local}.\n\nO cenário estimado indica variação de ${Math.abs(principal)} pontos no indicador de ${TEMAS[intervencao.temaAlvo].nome.toLowerCase()}, com efeitos secundários nas demais camadas. Prazo típico de execução: ${intervencao.prazo}; custo referencial: ${intervencao.custo}. Estado atual do indicador principal: ${base[intervencao.temaAlvo]}/100.`,
       simulacao: { local, intervencao: intervencao.nome, linhas },
     };
   }
