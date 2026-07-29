@@ -49,8 +49,8 @@ function Dashboard() {
           <p className="label-inst">{perfil.secretaria}</p>
           <h1 className="mt-1 text-2xl font-semibold">O que precisa de atenção hoje</h1>
           <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-            Drones e bikes Gira com sensores percorrem a ilha e trazem os dados. A plataforma
-            organiza tudo nesta tela. Para o seu setor, aparece primeiro o tema{" "}
+            APIs e sensores trazem os dados. A plataforma organiza tudo nesta tela.
+            Para o seu setor, aparece primeiro o tema{" "}
             <span className={TEMA_TEXT[destaque]}>{TEMAS[destaque].nome.toLowerCase()}</span>.
           </p>
         </div>

@@ -32,10 +32,10 @@ export function AppShell({ children }: { children: ReactNode }) {
             </span>
             <span className="leading-tight">
               <span className="block text-[15px] font-semibold tracking-tight">
-                Ilha Inteligente
+                Plataforma de Inteligência Urbana
               </span>
               <span className="block text-[11px] text-sidebar-foreground/65">
-                Prefeitura do Recife · Cuidar da cidade com dados
+                EstuarIA · Prefeitura do Recife
               </span>
             </span>
           </Link>
@@ -95,8 +95,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <footer className="border-t border-border bg-card">
         <div className="mx-auto max-w-[1400px] px-5 py-5 text-xs text-muted-foreground">
-          Versão de teste. Os números aqui são apenas exemplos, não são dados reais ·{" "}
-          {perfil.secretaria}
+          Versão de teste. Os números aqui são apenas exemplos, não são dados reais
         </div>
       </footer>
     </div>
