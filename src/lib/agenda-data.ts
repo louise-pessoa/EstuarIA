@@ -238,9 +238,9 @@ export const CONFLITOS: Conflito[] = [
 ];
 
 export const TIPO_CONFLITO_LABEL: Record<TipoConflito, string> = {
-  remarcar: "Remarcar",
-  agrupar: "Executar em conjunto",
-  monitorar: "Monitorar",
+  remarcar: "Mudar a data",
+  agrupar: "Fazer junto",
+  monitorar: "Ficar de olho",
 };
 
 export function servicoPorId(id: string) {
