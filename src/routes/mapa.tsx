@@ -19,17 +19,17 @@ import { RotateCcw } from "lucide-react";
 export const Route = createFileRoute("/mapa")({
   head: () => ({
     meta: [
-      { title: "Mapa e simulador de intervenções | Ilha Inteligente" },
+      { title: "Mapa e testes de melhorias | Ilha Inteligente" },
       {
         name: "description",
         content:
-          "Mapa interativo da Ilha do Recife com camadas de alagamento, calor, arborização e patrimônio, e simulação antes/depois de intervenções urbanas.",
+          "Mapa da Ilha do Recife com enchente, calor, árvores e prédios históricos. Teste uma melhoria e veja como fica antes e depois.",
       },
-      { property: "og:title", content: "Mapa e simulador de intervenções | Ilha Inteligente" },
+      { property: "og:title", content: "Mapa e testes de melhorias | Ilha Inteligente" },
       {
         property: "og:description",
         content:
-          "Camadas de risco em nível de rua e simulação de impacto de intervenções antes da execução.",
+          "Veja rua por rua o que precisa de atenção e teste o efeito de uma obra antes de fazer.",
       },
     ],
   }),
@@ -62,18 +62,18 @@ function MapaPage() {
   return (
     <AppShell>
       <div className="border-b border-border pb-5">
-        <p className="label-inst">Mapa de dados em tempo real</p>
-        <h1 className="mt-1 text-2xl font-semibold">Ilha do Recife — camadas e simulação</h1>
+        <p className="label-inst">Mapa da ilha</p>
+        <h1 className="mt-1 text-2xl font-semibold">Mapa da Ilha do Recife</h1>
         <p className="mt-1 max-w-3xl text-sm text-muted-foreground">
-          Clique em um ponto para ver o diagnóstico ou em qualquer área do mapa para simular uma
-          intervenção e comparar o cenário antes e depois.
+          Clique em um ponto para ver o que foi medido ali. Clique em qualquer parte do mapa para
+          testar uma melhoria e comparar como fica antes e depois.
         </p>
       </div>
 
       <div className="mt-5 grid gap-5 lg:grid-cols-[1.5fr_1fr]">
         <section className="rounded-md border border-border bg-card shadow-panel">
           <header className="flex flex-wrap items-center gap-2 border-b border-border px-4 py-3">
-            <span className="label-inst mr-1">Camadas</span>
+            <span className="label-inst mr-1">Mostrar no mapa</span>
             {TODOS.map((t) => (
               <button
                 key={t}
@@ -108,12 +108,12 @@ function MapaPage() {
           </div>
 
           <footer className="flex flex-wrap items-center gap-4 border-t border-border px-4 py-2.5 text-xs text-muted-foreground">
-            <span>Legenda:</span>
+            <span>O que as cores querem dizer:</span>
             {[
-              ["bg-critico", "Crítico"],
-              ["bg-alto", "Alto"],
-              ["bg-moderado", "Moderado"],
-              ["bg-baixo", "Estável"],
+              ["bg-critico", "Muito grave"],
+              ["bg-alto", "Grave"],
+              ["bg-moderado", "Preocupa"],
+              ["bg-baixo", "Tranquilo"],
             ].map(([klass, label]) => (
               <span key={label} className="inline-flex items-center gap-1.5">
                 <span className={`size-2 rounded-full ${klass}`} />
@@ -121,7 +121,7 @@ function MapaPage() {
               </span>
             ))}
 
-            <span className="ml-auto">Representação esquemática · dados fictícios</span>
+            <span className="ml-auto">Desenho simplificado · dados de exemplo</span>
           </footer>
         </section>
 
@@ -139,17 +139,17 @@ function MapaPage() {
               <p className="mt-3 text-sm text-muted-foreground">{ponto.detalhe}</p>
               <dl className="mt-3 grid grid-cols-2 gap-3 border-t border-border pt-3 text-xs">
                 <div>
-                  <dt className="label-inst">Valor</dt>
+                  <dt className="label-inst">Medida</dt>
                   <dd className="font-mono text-sm">
                     {ponto.valor} <span className="text-muted-foreground">{TEMAS[ponto.tema].unidade}</span>
                   </dd>
                 </div>
                 <div>
-                  <dt className="label-inst">Fonte</dt>
+                  <dt className="label-inst">Quem mediu</dt>
                   <dd className="text-sm">{ponto.fonte}</dd>
                 </div>
                 <div className="col-span-2 text-muted-foreground">
-                  Atualizado {ponto.atualizadoEm}
+                  Medido {ponto.atualizadoEm}
                 </div>
               </dl>
             </section>
@@ -157,7 +157,7 @@ function MapaPage() {
 
           <section className="rounded-md border border-border bg-card shadow-panel">
             <header className="flex items-center justify-between border-b border-border px-4 py-3">
-              <h2 className="text-sm font-semibold">Simulador de intervenções</h2>
+              <h2 className="text-sm font-semibold">Teste uma melhoria</h2>
               {(area || intervencao) && (
                 <button
                   onClick={() => {
@@ -174,20 +174,20 @@ function MapaPage() {
 
             <div className="space-y-4 p-4">
               <div>
-                <p className="label-inst">1. Área selecionada</p>
+                <p className="label-inst">1. Onde</p>
                 <p className="mt-1 text-sm">
                   {area ? (
                     <span className="font-medium">{area.bairro}</span>
                   ) : (
                     <span className="text-muted-foreground">
-                      Clique no mapa para escolher uma área
+                      Clique no mapa para escolher um lugar
                     </span>
                   )}
                 </p>
               </div>
 
               <div>
-                <p className="label-inst">2. Tipo de intervenção</p>
+                <p className="label-inst">2. O que fazer</p>
                 <div className="mt-2 grid gap-2">
                   {sugeridas.map((i) => (
                     <button
@@ -215,9 +215,9 @@ function MapaPage() {
 
               {resultado && intervencao && (
                 <div className="rounded-sm border border-border bg-surface p-3">
-                  <p className="label-inst">3. Antes vs. depois — estimativa</p>
+                  <p className="label-inst">3. Como fica antes e depois</p>
                   <p className="mt-1 text-xs text-muted-foreground">
-                    {intervencao.nome} em {area?.bairro} · prazo {intervencao.prazo} · custo{" "}
+                    {intervencao.nome} em {area?.bairro} · leva {intervencao.prazo} · custa cerca de{" "}
                     {intervencao.custo}
                   </p>
                   <ul className="mt-3 space-y-3">
@@ -251,8 +251,8 @@ function MapaPage() {
                     })}
                   </ul>
                   <p className="mt-3 border-t border-border pt-2 text-xs text-muted-foreground">
-                    Estimativas da plataforma sobre dados fictícios. Não substituem estudo
-                    técnico executivo.
+                    São contas aproximadas, feitas com dados de exemplo. Não substituem o projeto
+                    feito por engenheiros.
                   </p>
                 </div>
               )}
