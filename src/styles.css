@@ -206,120 +206,29 @@
   color: var(--color-muted-foreground);
 }
 
-/* Escala tipográfica nomeada do design system (DM Sans), disponível para
-   adoção incremental — não substitui as classes Tailwind já usadas hoje. */
-@utility text-display-xlarge {
+.leaflet-container {
+  background: var(--color-agua);
+  border-radius: inherit;
   font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 5rem;
-  line-height: 120%;
 }
-@utility text-display-large {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 4rem;
-  line-height: 120%;
+
+.leaflet-control-attribution {
+  background: var(--color-card) !important;
+  color: var(--color-muted-foreground) !important;
 }
-@utility text-display-medium {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 2.5rem;
-  line-height: 140%;
+
+.leaflet-control-attribution a {
+  color: var(--color-muted-foreground) !important;
 }
-@utility text-display-small {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 2rem;
-  line-height: 120%;
+
+.leaflet-control-zoom a {
+  background: var(--color-card) !important;
+  color: var(--color-foreground) !important;
+  border-color: var(--color-border) !important;
 }
-@utility text-display-xsmall {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 1.5rem;
-  line-height: 120%;
-}
-@utility text-heading-xxlarge {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 2.5rem;
-  line-height: 120%;
-}
-@utility text-heading-xlarge {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 2.25rem;
-  line-height: 120%;
-}
-@utility text-heading-large {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 2rem;
-  line-height: 120%;
-}
-@utility text-heading-medium {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 1.75rem;
-  line-height: 120%;
-}
-@utility text-heading-small {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 1.5rem;
-  line-height: 120%;
-}
-@utility text-heading-xsmall {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 1.25rem;
-  line-height: 120%;
-}
-@utility text-label-xlarge {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 1.25rem;
-  line-height: 140%;
-}
-@utility text-label-medium {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 1rem;
-  line-height: 140%;
-}
-@utility text-label-medium-bold {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 1rem;
-  line-height: 140%;
-}
-@utility text-label-small {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 0.875rem;
-  line-height: 140%;
-  letter-spacing: 0.0125em;
-}
-@utility text-paragraph-large {
-  font-family: var(--font-sans);
-  font-weight: 400;
-  font-size: 1.25rem;
-  line-height: 160%;
-}
-@utility text-paragraph-medium {
-  font-family: var(--font-sans);
-  font-weight: 400;
-  font-size: 1.125rem;
-  line-height: 160%;
-}
-@utility text-paragraph-small {
-  font-family: var(--font-sans);
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 160%;
-}
-@utility text-paragraph-xsmall {
-  font-family: var(--font-sans);
-  font-weight: 400;
-  font-size: 0.875rem;
-  line-height: 160%;
+
+.leaflet-tooltip {
+  background: var(--color-card);
+  color: var(--color-foreground);
+  border-color: var(--color-border);
 }
