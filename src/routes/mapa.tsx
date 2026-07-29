@@ -42,7 +42,7 @@ function MapaPage() {
   const { perfil } = usePerfil();
   const [temas, setTemas] = useState<Tema[]>(TODOS);
   const [ponto, setPonto] = useState<Ponto | null>(null);
-  const [area, setArea] = useState<{ bairro: string; x: number; y: number } | null>(null);
+  const [area, setArea] = useState<{ bairro: string; lat: number; lng: number } | null>(null);
   const [intervencaoId, setIntervencaoId] = useState<string | null>(null);
 
   const intervencao = INTERVENCOES.find((i) => i.id === intervencaoId) ?? null;
@@ -91,16 +91,16 @@ function MapaPage() {
             ))}
           </header>
 
-          <div className="aspect-[4/3] w-full">
+          <div className="aspect-[4/3] w-full overflow-hidden">
             <IlhaMap
               temasAtivos={temas}
               selecionado={ponto}
               onSelect={(p) => {
                 setPonto(p);
-                setArea({ bairro: p.bairro, x: p.x, y: p.y });
+                setArea({ bairro: p.bairro, lat: p.lat, lng: p.lng });
               }}
-              onSelectArea={(bairro, x, y) => {
-                setArea({ bairro, x, y });
+              onSelectArea={(bairro, lat, lng) => {
+                setArea({ bairro, lat, lng });
                 setPonto(null);
               }}
               marcadorArea={area}
@@ -121,7 +121,7 @@ function MapaPage() {
               </span>
             ))}
 
-            <span className="ml-auto">Desenho simplificado · dados de exemplo</span>
+            <span className="ml-auto">Dados de exemplo</span>
           </footer>
         </section>
 
