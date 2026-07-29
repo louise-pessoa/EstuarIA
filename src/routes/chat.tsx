@@ -12,16 +12,16 @@ import { Send, Radar, Plus, MessageSquare } from "lucide-react";
 export const Route = createFileRoute("/chat")({
   head: () => ({
     meta: [
-      { title: "Copiloto IA | Ilha Inteligente" },
+      { title: "Assistente | Ilha Inteligente" },
       {
         name: "description",
         content:
-          "Copiloto conversacional para consultar indicadores da Ilha do Recife e simular intervenções urbanas em linguagem natural.",
+          "Pergunte com suas palavras sobre a Ilha do Recife e teste melhorias. O assistente responde de forma simples.",
       },
-      { property: "og:title", content: "Copiloto IA | Ilha Inteligente" },
+      { property: "og:title", content: "Assistente | Ilha Inteligente" },
       {
         property: "og:description",
-        content: "Pergunte sobre alagamento, calor, arborização e patrimônio — e simule cenários.",
+        content: "Pergunte sobre enchente, calor, árvores e prédios históricos da Ilha do Recife.",
       },
     ],
   }),
@@ -29,10 +29,10 @@ export const Route = createFileRoute("/chat")({
 });
 
 const SUGESTOES = [
-  "Qual área tem maior risco de alagamento essa semana?",
-  "Como está a cobertura arbórea no Bairro do Recife?",
-  "E se plantássemos árvores na Rua da Aurora?",
-  "Quais bens tombados estão em situação crítica?",
+  "Qual lugar tem mais risco de alagar esta semana?",
+  "Tem sombra suficiente no Bairro do Recife?",
+  "E se a gente plantar árvores na Rua da Aurora?",
+  "Quais prédios históricos estão em pior estado?",
 ];
 
 interface Conversa {
@@ -48,7 +48,7 @@ function ChatPage() {
     () => ({
       id: "inicial",
       autor: "ia",
-      texto: `Olá. Sou o copiloto da plataforma de monitoramento da Ilha do Recife. Estou com a visão de ${perfil.nome} carregada e posso responder sobre alagamento, calor urbano, arborização e patrimônio — ou simular uma intervenção que você descrever.`,
+      texto: `Olá! Sou o assistente da Ilha do Recife. Estou vendo os dados como ${perfil.nome}. Pode perguntar com suas palavras sobre alagamento, calor, árvores e prédios históricos. Também posso mostrar como fica uma melhoria antes de ela ser feita.`,
     }),
     [perfil.nome],
   );
@@ -117,7 +117,7 @@ function ChatPage() {
         {/* Histórico */}
         <aside className="order-2 lg:order-1">
           <div className="flex items-center justify-between">
-            <p className="label-inst">Histórico</p>
+            <p className="label-inst">Suas conversas</p>
             <button
               onClick={novaConversa}
               className="inline-flex items-center gap-1 rounded-sm border border-border px-2 py-1 text-xs transition-colors hover:bg-secondary"
@@ -147,8 +147,8 @@ function ChatPage() {
         {/* Chat central */}
         <section className="order-1 flex min-w-0 flex-col lg:order-2">
           <div className="border-b border-border pb-4 text-center">
-            <p className="label-inst">Copiloto IA · respostas simuladas no MVP</p>
-            <h1 className="mt-1 text-2xl font-semibold">Converse com os dados da ilha</h1>
+            <p className="label-inst">Assistente · respostas de exemplo nesta versão</p>
+            <h1 className="mt-1 text-2xl font-semibold">Pergunte sobre a ilha</h1>
           </div>
 
           <div className="mx-auto mt-4 flex h-[62vh] min-h-[440px] w-full max-w-3xl flex-col rounded-md border border-border bg-card shadow-panel">
@@ -158,7 +158,7 @@ function ChatPage() {
               ))}
               {pensando && (
                 <p className="animate-pulse text-sm text-muted-foreground">
-                  Consultando os dados da ilha…
+                  Procurando a resposta…
                 </p>
               )}
               <div ref={fimRef} />
@@ -183,7 +183,7 @@ function ChatPage() {
                       enviar(texto);
                     }
                   }}
-                  placeholder="Pergunte sobre os indicadores ou descreva uma intervenção…"
+                  placeholder="Escreva sua pergunta com suas palavras…"
                   className="max-h-32 flex-1 resize-none bg-transparent px-1 text-sm outline-none placeholder:text-muted-foreground"
                 />
                 <button
@@ -202,7 +202,7 @@ function ChatPage() {
         {/* Sugestões + contexto */}
         <aside className="order-3 space-y-4">
           <section className="rounded-md border border-border bg-card p-3 shadow-panel">
-            <p className="label-inst">Perguntas sugeridas</p>
+            <p className="label-inst">Exemplos de perguntas</p>
             <div className="mt-2 grid gap-1.5">
               {SUGESTOES.map((s) => (
                 <button
@@ -217,10 +217,10 @@ function ChatPage() {
           </section>
 
           <section className="rounded-md border border-border bg-surface p-3 text-xs text-muted-foreground">
-            <p className="label-inst">Contexto ativo</p>
+            <p className="label-inst">Como estou respondendo</p>
             <p className="mt-2 text-foreground">{perfil.secretaria}</p>
             <p className="mt-1">
-              Camadas priorizadas:{" "}
+              Vejo primeiro:{" "}
               {perfil.temasPrioritarios.slice(0, 2).map((t) => (
                 <span key={t} className="mr-2 inline-flex items-center gap-1.5">
                   <span className={`size-2 rounded-full ${TEMA_DOT[t]}`} />
@@ -229,9 +229,9 @@ function ChatPage() {
               ))}
             </p>
             <p className="mt-3">
-              Simulações citadas no chat podem ser abertas no{" "}
+              O que eu calcular aqui você também pode ver no{" "}
               <Link to="/mapa" className="font-medium text-primary underline-offset-2 hover:underline">
-                mapa interativo
+                mapa
               </Link>
               .
             </p>
@@ -261,7 +261,7 @@ function Bolha({ m }: { m: MensagemChat }) {
         <p className="whitespace-pre-line text-sm leading-relaxed">{m.texto}</p>
         {m.simulacao && (
           <div className="rounded-sm border border-border bg-surface p-3">
-            <p className="label-inst">Simulação estimada · {m.simulacao.local}</p>
+            <p className="label-inst">Como pode ficar · {m.simulacao.local}</p>
             <p className="mt-1 text-sm font-medium">{m.simulacao.intervencao}</p>
             <ul className="mt-2 space-y-1.5">
               {m.simulacao.linhas.map((l) => (
@@ -282,7 +282,7 @@ function Bolha({ m }: { m: MensagemChat }) {
               to="/mapa"
               className="mt-3 inline-block text-xs font-medium text-primary underline-offset-2 hover:underline"
             >
-              Ver no mapa e ajustar parâmetros →
+              Ver no mapa e mudar as opções →
             </Link>
           </div>
         )}

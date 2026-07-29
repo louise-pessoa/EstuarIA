@@ -45,26 +45,26 @@ export const TEMAS: Record<
 > = {
   alagamento: {
     nome: "Alagamento",
-    unidade: "índice de risco",
-    descricao: "Risco de acúmulo de água em vias e edificações",
+    unidade: "nota de risco",
+    descricao: "Chance de a água acumular nas ruas e entrar nos imóveis",
     corVar: "var(--tema-alagamento)",
   },
   calor: {
-    nome: "Calor urbano",
-    unidade: "°C aparente",
-    descricao: "Ilhas de calor medidas em nível de rua",
+    nome: "Calor",
+    unidade: "°C de sensação",
+    descricao: "Lugares onde faz mais calor na rua",
     corVar: "var(--tema-calor)",
   },
   arborizacao: {
-    nome: "Arborização",
-    unidade: "% cobertura",
-    descricao: "Cobertura arbórea e sombreamento de calçadas",
+    nome: "Árvores",
+    unidade: "% de sombra",
+    descricao: "Quanto das calçadas tem árvore e sombra",
     corVar: "var(--tema-arborizacao)",
   },
   patrimonio: {
-    nome: "Patrimônio",
+    nome: "Prédios históricos",
     unidade: "estado de conservação",
-    descricao: "Conservação de fachadas e bens tombados",
+    descricao: "Como estão as fachadas e os prédios tombados",
     corVar: "var(--tema-patrimonio)",
   },
 };
@@ -329,31 +329,31 @@ export const INDICADORES: Indicador[] = [
     tema: "alagamento",
     titulo: "Risco de alagamento",
     valor: "Alto",
-    descricao: "6 de 24 trechos monitorados em risco elevado nas próximas 48 h",
+    descricao: "6 de 24 trechos podem alagar nos próximos 2 dias",
     variacao: 12,
     severidade: "alto",
   },
   {
     tema: "calor",
-    titulo: "Índice de calor urbano",
+    titulo: "Calor na rua",
     valor: "38,4 °C",
-    descricao: "Média aparente das 14 h nos corredores da ilha",
+    descricao: "Sensação média às 14h nas ruas da ilha",
     variacao: 3,
     severidade: "alto",
   },
   {
     tema: "arborizacao",
-    titulo: "Cobertura arbórea",
+    titulo: "Árvores e sombra",
     valor: "18,6 %",
-    descricao: "Meta municipal para a área central: 25 % até 2028",
+    descricao: "A meta da cidade para o centro é 25% até 2028",
     variacao: -2,
     severidade: "moderado",
   },
   {
     tema: "patrimonio",
-    titulo: "Bens em atenção",
+    titulo: "Prédios em atenção",
     valor: "9 imóveis",
-    descricao: "Bens tombados com sinal de degradação acelerada",
+    descricao: "Prédios tombados que estão piorando rápido",
     variacao: 2,
     severidade: "critico",
   },
@@ -374,9 +374,9 @@ export const ALERTAS: Alerta[] = [
     id: "alerta-1",
     tema: "alagamento",
     severidade: "critico",
-    titulo: "Rua do Bom Jesus com risco elevado nas próximas 48 h",
+    titulo: "Rua do Bom Jesus pode alagar nos próximos 2 dias",
     corpo:
-      "Combinação de maré de sizígia (2,4 m) e previsão de 45 mm de chuva. Modelo estima lâmina d'água de até 30 cm.",
+      "A maré vai chegar a 2,4 metros e a previsão é de 45 mm de chuva. A água pode subir até 30 cm na rua.",
     quando: "há 40 min",
     local: "Bairro do Recife",
   },
@@ -384,9 +384,9 @@ export const ALERTAS: Alerta[] = [
     id: "alerta-2",
     tema: "patrimonio",
     severidade: "critico",
-    titulo: "Degradação acelerada no casario da Rua da Moeda",
+    titulo: "Casario da Rua da Moeda está piorando rápido",
     corpo:
-      "Fotogrametria detectou avanço de 11% na área com destacamento de reboco em relação ao voo anterior.",
+      "As fotos feitas por drone mostram 11% a mais de reboco soltando desde o último voo.",
     quando: "há 1 h",
     local: "Bairro do Recife",
   },
@@ -394,9 +394,9 @@ export const ALERTAS: Alerta[] = [
     id: "alerta-3",
     tema: "calor",
     severidade: "alto",
-    titulo: "Ilha de calor persistente no Marco Zero",
+    titulo: "Calor forte continua no Marco Zero",
     corpo:
-      "Sete dias consecutivos acima de 40 °C aparentes às 14 h. Sombreamento atual inferior a 8%.",
+      "São 7 dias seguidos com mais de 40 °C de sensação às 14h. Menos de 8% da área tem sombra.",
     quando: "há 55 min",
     local: "Bairro do Recife",
   },
@@ -404,8 +404,8 @@ export const ALERTAS: Alerta[] = [
     id: "alerta-4",
     tema: "arborizacao",
     severidade: "alto",
-    titulo: "12 covas vazias mapeadas na Praça do Arsenal",
-    corpo: "Visão computacional das bikes Gira identificou covas aptas para replantio imediato.",
+    titulo: "12 buracos de plantio vazios na Praça do Arsenal",
+    corpo: "As câmeras das bikes Gira acharam 12 lugares prontos para plantar árvore agora.",
     quando: "há 3 h",
     local: "Bairro do Recife",
   },
@@ -413,8 +413,8 @@ export const ALERTAS: Alerta[] = [
     id: "alerta-5",
     tema: "alagamento",
     severidade: "moderado",
-    titulo: "Bocas de lobo obstruídas na Av. Dantas Barreto",
-    corpo: "Três quarteirões com obstrução parcial identificada por câmera embarcada.",
+    titulo: "Bueiros entupidos na Av. Dantas Barreto",
+    corpo: "As câmeras viram bueiros parcialmente entupidos em três quarteirões.",
     quando: "há 3 h",
     local: "Santo Antônio",
   },
@@ -422,8 +422,8 @@ export const ALERTAS: Alerta[] = [
     id: "alerta-6",
     tema: "patrimonio",
     severidade: "alto",
-    titulo: "Salinização avança no Forte das Cinco Pontas",
-    corpo: "Drenagem perimetral deficiente mantém umidade na base da alvenaria histórica.",
+    titulo: "Sal está corroendo o Forte das Cinco Pontas",
+    corpo: "A água não escoa bem em volta do forte e deixa a base das paredes sempre úmida.",
     quando: "há 4 h",
     local: "São José",
   },
@@ -438,8 +438,8 @@ export interface Frota {
 
 export const FROTA: Frota[] = [
   { tipo: "Drones", ativos: 6, cobertura: "82% da ilha", ultimaColeta: "há 40 min" },
-  { tipo: "Bikes Gira com sensores", ativos: 34, cobertura: "61 km de vias", ultimaColeta: "há 12 min" },
-  { tipo: "Sensores fixos de nível", ativos: 18, cobertura: "9 pontos críticos", ultimaColeta: "há 5 min" },
+  { tipo: "Bikes Gira com sensores", ativos: 34, cobertura: "61 km de ruas", ultimaColeta: "há 12 min" },
+  { tipo: "Sensores de nível de água", ativos: 18, cobertura: "9 pontos que alagam", ultimaColeta: "há 5 min" },
 ];
 
 // ---- Simulador de intervenções -------------------------------------------
@@ -458,8 +458,8 @@ export interface Intervencao {
 export const INTERVENCOES: Intervencao[] = [
   {
     id: "plantio",
-    nome: "Plantio arbóreo em calçada",
-    descricao: "Implantação de 40 exemplares de porte médio com canteiro drenante.",
+    nome: "Plantar árvores na calçada",
+    descricao: "40 árvores de porte médio, com canteiro que deixa a água entrar no solo.",
     temaAlvo: "arborizacao",
     prazo: "4 meses",
     custo: "R$ 380 mil",
@@ -467,8 +467,8 @@ export const INTERVENCOES: Intervencao[] = [
   },
   {
     id: "drenagem",
-    nome: "Obra de drenagem profunda",
-    descricao: "Ampliação de galeria e substituição de bocas de lobo por modelo de alta captação.",
+    nome: "Obra para a água escoar melhor",
+    descricao: "Aumentar as galerias embaixo da rua e trocar os bueiros por outros maiores.",
     temaAlvo: "alagamento",
     prazo: "11 meses",
     custo: "R$ 4,2 mi",
@@ -476,8 +476,8 @@ export const INTERVENCOES: Intervencao[] = [
   },
   {
     id: "piso-frio",
-    nome: "Pavimento frio e sombreamento",
-    descricao: "Piso de alta refletância e pergolado vegetado em praça seca.",
+    nome: "Piso que esquenta menos e sombra",
+    descricao: "Piso claro que reflete o sol e cobertura com plantas na praça.",
     temaAlvo: "calor",
     prazo: "6 meses",
     custo: "R$ 1,1 mi",
@@ -485,8 +485,8 @@ export const INTERVENCOES: Intervencao[] = [
   },
   {
     id: "fachada",
-    nome: "Restauração de fachada tombada",
-    descricao: "Tratamento de umidade ascendente, recomposição de reboco e pintura mineral.",
+    nome: "Restaurar fachada de prédio histórico",
+    descricao: "Tirar a umidade da parede, refazer o reboco e pintar de novo.",
     temaAlvo: "patrimonio",
     prazo: "8 meses",
     custo: "R$ 2,6 mi",
@@ -494,8 +494,8 @@ export const INTERVENCOES: Intervencao[] = [
   },
   {
     id: "jardim-chuva",
-    nome: "Jardim de chuva",
-    descricao: "Canteiro infiltrante com vegetação nativa ao longo do meio-fio.",
+    nome: "Jardim que absorve a chuva",
+    descricao: "Canteiro com plantas da região que deixa a água da chuva entrar no solo.",
     temaAlvo: "alagamento",
     prazo: "3 meses",
     custo: "R$ 240 mil",
@@ -551,5 +551,5 @@ export function menorEhMelhor(tema: Tema) {
 }
 
 export function severidadeLabel(s: Severidade) {
-  return { critico: "Crítico", alto: "Alto", moderado: "Moderado", baixo: "Estável" }[s];
+  return { critico: "Muito grave", alto: "Grave", moderado: "Preocupa", baixo: "Tranquilo" }[s];
 }

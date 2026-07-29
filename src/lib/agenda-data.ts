@@ -178,10 +178,10 @@ export const CONFLITOS: Conflito[] = [
     local: "Rua do Bom Jesus · Bairro do Recife",
     janela: "11 a 14 de agosto",
     diagnostico:
-      "Drenagem profunda (Emlurb) e recapeamento (Mobilidade) se sobrepõem por 4 dias na mesma via, ambos com interdição total. O recapeamento cobriria o trecho antes do fechamento da vala de drenagem.",
+      "Duas obras vão fechar a mesma rua ao mesmo tempo por 4 dias: a obra de drenagem (Emlurb) e a troca do asfalto (Mobilidade). O asfalto novo seria colocado antes de a vala da drenagem ser fechada.",
     recomendacao:
-      "Remarcar o recapeamento para 17 a 21 de agosto, após a conclusão da drenagem. Evita refazer o pavimento e mantém a via aberta para o comércio da Rua do Bom Jesus.",
-    ganho: "Economia estimada de R$ 310 mil e 4 dias a menos de interdição",
+      "Mudar a troca do asfalto para 17 a 21 de agosto, depois que a drenagem terminar. Assim o asfalto não precisa ser refeito e a rua fica aberta para as lojas.",
+    ganho: "Economia de cerca de R$ 310 mil e 4 dias a menos de rua fechada",
   },
   {
     id: "c2",
@@ -191,10 +191,10 @@ export const CONFLITOS: Conflito[] = [
     local: "Av. Dantas Barreto · Santo Antônio",
     janela: "6 e 7 de agosto",
     diagnostico:
-      "Limpeza de galerias e troca de luminárias ocupam a mesma faixa da direita em dias parcialmente coincidentes, com dois desvios de tráfego separados.",
+      "A limpeza dos bueiros e a troca das lâmpadas ocupam a mesma faixa da avenida em dias parecidos. Hoje, cada uma teria seu próprio desvio de trânsito.",
     recomendacao:
-      "Executar em conjunto entre 5 e 8 de agosto com um único plano de desvio e sinalização compartilhada.",
-    ganho: "Uma interdição a menos e redução de 40% no custo de sinalização",
+      "Fazer as duas juntas, de 5 a 8 de agosto, com um só desvio e a mesma sinalização.",
+    ganho: "Um bloqueio de trânsito a menos e 40% menos gasto com sinalização",
   },
   {
     id: "c3",
@@ -204,10 +204,10 @@ export const CONFLITOS: Conflito[] = [
     local: "Praça do Marco Zero · Bairro do Recife",
     janela: "22 e 23 de agosto",
     diagnostico:
-      "A feira cultural com público de 8 mil pessoas acontece com a praça parcialmente fechada pela obra de piso frio, reduzindo rotas de evacuação.",
+      "A feira cultural espera 8 mil pessoas, mas parte da praça vai estar fechada pela obra do piso. Sobram poucas saídas em caso de emergência.",
     recomendacao:
-      "Suspender a frente de obra de 21 a 24 de agosto ou remarcar a etapa de pavimentação para setembro, mantendo o evento na data.",
-    ganho: "Risco de aglomeração em área reduzida eliminado",
+      "Parar a obra de 21 a 24 de agosto ou passar essa etapa para setembro. O evento continua na data marcada.",
+    ganho: "Evita aglomeração em espaço apertado",
   },
   {
     id: "c4",
@@ -217,10 +217,10 @@ export const CONFLITOS: Conflito[] = [
     local: "Recife Antigo (Rua da Moeda / Rua do Apolo)",
     janela: "12 a 20 de agosto",
     diagnostico:
-      "Restauro de fachadas e plantio arbóreo ocorrem a 250 m de distância, com bloqueios de calçada simultâneos no mesmo circuito de pedestres.",
+      "O restauro das fachadas e o plantio de árvores acontecem a 250 metros um do outro e fecham calçadas no mesmo caminho de quem anda a pé.",
     recomendacao:
-      "Manter as datas, mas unificar canteiro, logística de resíduos e comunicação ao comércio local. O plantio ainda reduz a incidência solar sobre as fachadas restauradas.",
-    ganho: "Logística compartilhada e ganho cruzado em conservação",
+      "Manter as datas, mas usar o mesmo canteiro de obras, a mesma coleta de entulho e um só aviso para o comércio. As árvores ainda dão sombra às fachadas restauradas.",
+    ganho: "Menos custo de logística e prédios mais protegidos do sol",
   },
   {
     id: "c5",
@@ -230,17 +230,17 @@ export const CONFLITOS: Conflito[] = [
     local: "Forte das Cinco Pontas · São José",
     janela: "18 a 27 de agosto",
     diagnostico:
-      "A janela coincide com previsão de marés de sizígia acima de 2,2 m, o que pode inundar a vala aberta da drenagem perimetral.",
+      "Nesses dias a maré deve passar de 2,2 metros. A vala aberta da obra pode encher de água.",
     recomendacao:
-      "Manter a data, mas programar as escavações fora das janelas de preamar e prever bombeamento de contingência.",
-    ganho: "Redução do risco de retrabalho por alagamento da obra",
+      "Manter a data, mas cavar fora dos horários de maré alta e deixar uma bomba de água pronta.",
+    ganho: "Menos risco de ter que refazer o serviço",
   },
 ];
 
 export const TIPO_CONFLITO_LABEL: Record<TipoConflito, string> = {
-  remarcar: "Remarcar",
-  agrupar: "Executar em conjunto",
-  monitorar: "Monitorar",
+  remarcar: "Mudar a data",
+  agrupar: "Fazer junto",
+  monitorar: "Ficar de olho",
 };
 
 export function servicoPorId(id: string) {

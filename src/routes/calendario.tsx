@@ -25,13 +25,13 @@ export const Route = createFileRoute("/calendario")({
       {
         name: "description",
         content:
-          "Agenda de obras e serviços na Ilha do Recife com conflitos detectados pelo copiloto de IA: remarcar, executar em conjunto ou monitorar.",
+          "Obras e eventos marcados na Ilha do Recife. O assistente avisa quando dois serviços atrapalham um ao outro e sugere o que fazer.",
       },
       { property: "og:title", content: "Calendário de serviços | Ilha Inteligente — Recife" },
       {
         property: "og:description",
         content:
-          "Planejamento integrado de intervenções urbanas com detecção automática de sobreposições.",
+          "Veja as datas de obras e eventos e evite que dois serviços atrapalhem a mesma rua.",
       },
     ],
   }),
@@ -118,18 +118,18 @@ function CalendarioPage() {
       <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-5">
         <div>
           <p className="label-inst">{perfil.secretaria}</p>
-          <h1 className="mt-1 text-2xl font-semibold">Calendário integrado de serviços</h1>
+          <h1 className="mt-1 text-2xl font-semibold">Calendário de serviços</h1>
           <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-            Agenda de obras e eventos na ilha, analisada pelo copiloto de IA para identificar
-            sobreposições e sugerir remarcação ou execução conjunta, reduzindo o distúrbio à
-            população.
+            Veja as obras e os eventos marcados na ilha. O assistente compara as datas e avisa
+            quando dois serviços atrapalham um ao outro. Assim dá para mudar a data ou fazer os dois
+            juntos e incomodar menos as pessoas.
           </p>
         </div>
         <div className="flex items-center gap-2 rounded-sm border border-primary/30 bg-primary/5 px-3.5 py-2 text-sm">
           <Sparkles className="size-4 text-primary" />
           <span>
-            <span className="font-semibold">{CONFLITOS.length} conflitos</span> detectados pelo
-            copiloto
+            O assistente encontrou <span className="font-semibold">{CONFLITOS.length} casos</span>{" "}
+            para resolver
           </span>
         </div>
       </div>
@@ -208,8 +208,8 @@ function CalendarioPage() {
           <div className="border-t border-border px-4 py-3.5">
             <h3 className="text-sm font-semibold">
               {diaSelecionado
-                ? `${String(diaSelecionado).padStart(2, "0")} de ${MESES[mes]} · ${servicosDoDia.length} serviço(s)`
-                : "Selecione um dia"}
+                ? `Dia ${String(diaSelecionado).padStart(2, "0")} de ${MESES[mes]} · ${servicosDoDia.length} serviço(s)`
+                : "Escolha um dia no calendário"}
             </h3>
             <ul className="mt-2 space-y-2">
               {servicosDoDia.map((s) => {
@@ -238,7 +238,7 @@ function CalendarioPage() {
                 );
               })}
               {!servicosDoDia.length && (
-                <li className="text-sm text-muted-foreground">Nenhum serviço agendado neste dia.</li>
+                <li className="text-sm text-muted-foreground">Nada marcado para este dia.</li>
               )}
             </ul>
           </div>
@@ -247,8 +247,8 @@ function CalendarioPage() {
         {/* Recomendações do copiloto */}
         <section className="rounded-md border border-border bg-card shadow-panel">
           <header className="flex items-center justify-between border-b border-border px-4 py-3">
-            <h2 className="text-sm font-semibold">Recomendações do copiloto</h2>
-            <span className="label-inst">priorizadas por perfil</span>
+            <h2 className="text-sm font-semibold">O que o assistente sugere</h2>
+            <span className="label-inst">primeiro o do seu setor</span>
           </header>
           <ul className="divide-y divide-border">
             {conflitosOrdenados.map((c) => {
@@ -284,11 +284,11 @@ function CalendarioPage() {
                   {aberto && (
                     <div className="space-y-3 border-t border-border/70 bg-background px-4 py-3.5 pl-[3.4rem]">
                       <div>
-                        <p className="label-inst">Diagnóstico</p>
+                        <p className="label-inst">O que está acontecendo</p>
                         <p className="mt-1 text-sm text-muted-foreground">{c.diagnostico}</p>
                       </div>
                       <div>
-                        <p className="label-inst">Recomendação</p>
+                        <p className="label-inst">O que fazer</p>
                         <p className="mt-1 text-sm">{c.recomendacao}</p>
                       </div>
                       <p className="inline-flex rounded-sm bg-secondary px-2 py-1 text-xs text-muted-foreground">
@@ -301,8 +301,8 @@ function CalendarioPage() {
             })}
           </ul>
           <footer className="border-t border-border px-4 py-3 text-xs text-muted-foreground">
-            Análise gerada sobre {SERVICOS.length} serviços agendados por 4 órgãos. Dados fictícios
-            de protótipo.
+            O assistente olhou {SERVICOS.length} serviços de 4 órgãos da prefeitura. Os dados são
+            apenas exemplos.
           </footer>
         </section>
       </div>
