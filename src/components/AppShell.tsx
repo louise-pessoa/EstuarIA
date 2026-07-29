@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Radar } from "lucide-react";
+import logoEstuarIA from "@/assets/logoEstuarIA.png";
 import type { ReactNode } from "react";
 
 const NAV = [
@@ -27,8 +27,8 @@ export function AppShell({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-30 border-b border-sidebar-border bg-sidebar text-sidebar-foreground">
         <div className="mx-auto flex h-16 max-w-[1400px] items-center gap-6 px-5">
           <Link to="/" className="flex items-center gap-3">
-            <span className="flex size-9 items-center justify-center rounded-sm bg-sidebar-primary text-sidebar-primary-foreground">
-              <Radar className="size-5" />
+            <span className="flex size-9 items-center justify-center">
+              <img src={logoEstuarIA} alt="EstuarIA" className="size-full object-contain" />
             </span>
             <span className="leading-tight">
               <span className="block text-[15px] font-semibold tracking-tight">
