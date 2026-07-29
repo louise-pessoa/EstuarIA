@@ -83,7 +83,7 @@ export function responderMock(pergunta: string, perfil: Perfil): MensagemChat {
     return {
       id,
       autor: "ia",
-      texto: `Simulei "${intervencao.nome}" em ${local}.\n\nO cenário estimado indica variação de ${Math.abs(principal)} pontos no indicador de ${TEMAS[intervencao.temaAlvo].nome.toLowerCase()}, com efeitos secundários nas demais camadas. Prazo típico de execução: ${intervencao.prazo}; custo referencial: ${intervencao.custo}. Estado atual do indicador principal: ${base[intervencao.temaAlvo]}/100.`,
+      texto: `Fiz a conta para "${intervencao.nome}" em ${local}.\n\nA nota de ${TEMAS[intervencao.temaAlvo].nome.toLowerCase()} muda cerca de ${Math.abs(principal)} pontos. Os outros temas também sentem o efeito. O serviço leva ${intervencao.prazo} e custa cerca de ${intervencao.custo}. Hoje a nota está em ${base[intervencao.temaAlvo]} de 100.`,
       simulacao: { local, intervencao: intervencao.nome, linhas },
     };
   }
@@ -103,7 +103,7 @@ export function responderMock(pergunta: string, perfil: Perfil): MensagemChat {
       return {
         id,
         autor: "ia",
-        texto: `Na camada de ${TEMAS[tema].nome.toLowerCase()}${bairro ? ` em ${bairro}` : " na ilha"}, o ponto de maior atenção é ${pior.nome}.\n\n${pior.detalhe}\n\nRanking atual:\n${lista}\n\nFonte: ${pior.fonte}, atualizado ${pior.atualizadoEm}. Posso simular uma intervenção nesse local se você quiser.`,
+        texto: `Sobre ${TEMAS[tema].nome.toLowerCase()}${bairro ? ` em ${bairro}` : " na ilha"}, o lugar que mais precisa de atenção é ${pior.nome}.\n\n${pior.detalhe}\n\nOs três primeiros da lista:\n${lista}\n\nQuem mediu: ${pior.fonte}, ${pior.atualizadoEm}. Se quiser, eu mostro como ficaria depois de uma melhoria nesse lugar.`,
       };
     }
   }
@@ -111,8 +111,8 @@ export function responderMock(pergunta: string, perfil: Perfil): MensagemChat {
   return {
     id,
     autor: "ia",
-    texto: `Ainda não tenho uma leitura específica para essa pergunta neste MVP. Com o perfil ${perfil.nome} ativo, consigo responder sobre ${perfil.temasPrioritarios
+    texto: `Ainda não sei responder isso. Como ${perfil.nome}, posso falar sobre ${perfil.temasPrioritarios
       .map((t) => TEMAS[t].nome.toLowerCase())
-      .join(", ")} — por exemplo: "qual área tem maior risco de alagamento essa semana?" ou "e se plantássemos árvores na Rua da Aurora?".`,
+      .join(", ")}. Por exemplo: "qual lugar tem mais risco de alagar esta semana?" ou "e se a gente plantar árvores na Rua da Aurora?".`,
   };
 }
