@@ -188,7 +188,7 @@ function CalendarioPage() {
                     {servicos.slice(0, 3).map((s) => (
                       <span
                         key={s.id}
-                        className="flex items-center gap-1 truncate rounded-[3px] bg-secondary px-1 py-0.5 text-[10px] leading-tight"
+                        className="flex items-center gap-1 truncate rounded-sm bg-secondary px-1 py-0.5 text-[10px] leading-tight"
                       >
                         <span className={`size-1.5 shrink-0 rounded-full ${TEMA_DOT[s.tema]}`} />
                         <span className="truncate">{s.titulo}</span>
@@ -219,13 +219,13 @@ function CalendarioPage() {
                     <div className="flex flex-wrap items-center gap-2">
                       <span className={`size-2 rounded-full ${TEMA_DOT[s.tema]}`} />
                       <span className="text-sm font-medium">{s.titulo}</span>
-                      <span className="rounded-[3px] border border-border px-1.5 py-0.5 text-[10px] uppercase tracking-wide text-muted-foreground">
+                      <span className="rounded-sm border border-border px-1.5 py-0.5 text-[10px] uppercase tracking-wide text-muted-foreground">
                         {STATUS_LABEL[s.status]}
                       </span>
                       {confs.map((c) => (
                         <span
                           key={c.id}
-                          className={`rounded-[3px] border px-1.5 py-0.5 text-[10px] font-medium ${TIPO_CLASS[c.tipo]}`}
+                          className={`rounded-sm border px-1.5 py-0.5 text-[10px] font-medium ${TIPO_CLASS[c.tipo]}`}
                         >
                           {TIPO_CONFLITO_LABEL[c.tipo]}
                         </span>
