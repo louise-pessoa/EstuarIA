@@ -438,8 +438,8 @@ export interface Frota {
 
 export const FROTA: Frota[] = [
   { tipo: "Drones", ativos: 6, cobertura: "82% da ilha", ultimaColeta: "há 40 min" },
-  { tipo: "Bikes Gira com sensores", ativos: 34, cobertura: "61 km de vias", ultimaColeta: "há 12 min" },
-  { tipo: "Sensores fixos de nível", ativos: 18, cobertura: "9 pontos críticos", ultimaColeta: "há 5 min" },
+  { tipo: "Bikes Gira com sensores", ativos: 34, cobertura: "61 km de ruas", ultimaColeta: "há 12 min" },
+  { tipo: "Sensores de nível de água", ativos: 18, cobertura: "9 pontos que alagam", ultimaColeta: "há 5 min" },
 ];
 
 // ---- Simulador de intervenções -------------------------------------------
@@ -458,8 +458,8 @@ export interface Intervencao {
 export const INTERVENCOES: Intervencao[] = [
   {
     id: "plantio",
-    nome: "Plantio arbóreo em calçada",
-    descricao: "Implantação de 40 exemplares de porte médio com canteiro drenante.",
+    nome: "Plantar árvores na calçada",
+    descricao: "40 árvores de porte médio, com canteiro que deixa a água entrar no solo.",
     temaAlvo: "arborizacao",
     prazo: "4 meses",
     custo: "R$ 380 mil",
@@ -467,8 +467,8 @@ export const INTERVENCOES: Intervencao[] = [
   },
   {
     id: "drenagem",
-    nome: "Obra de drenagem profunda",
-    descricao: "Ampliação de galeria e substituição de bocas de lobo por modelo de alta captação.",
+    nome: "Obra para a água escoar melhor",
+    descricao: "Aumentar as galerias embaixo da rua e trocar os bueiros por outros maiores.",
     temaAlvo: "alagamento",
     prazo: "11 meses",
     custo: "R$ 4,2 mi",
@@ -476,8 +476,8 @@ export const INTERVENCOES: Intervencao[] = [
   },
   {
     id: "piso-frio",
-    nome: "Pavimento frio e sombreamento",
-    descricao: "Piso de alta refletância e pergolado vegetado em praça seca.",
+    nome: "Piso que esquenta menos e sombra",
+    descricao: "Piso claro que reflete o sol e cobertura com plantas na praça.",
     temaAlvo: "calor",
     prazo: "6 meses",
     custo: "R$ 1,1 mi",
@@ -485,8 +485,8 @@ export const INTERVENCOES: Intervencao[] = [
   },
   {
     id: "fachada",
-    nome: "Restauração de fachada tombada",
-    descricao: "Tratamento de umidade ascendente, recomposição de reboco e pintura mineral.",
+    nome: "Restaurar fachada de prédio histórico",
+    descricao: "Tirar a umidade da parede, refazer o reboco e pintar de novo.",
     temaAlvo: "patrimonio",
     prazo: "8 meses",
     custo: "R$ 2,6 mi",
@@ -494,8 +494,8 @@ export const INTERVENCOES: Intervencao[] = [
   },
   {
     id: "jardim-chuva",
-    nome: "Jardim de chuva",
-    descricao: "Canteiro infiltrante com vegetação nativa ao longo do meio-fio.",
+    nome: "Jardim que absorve a chuva",
+    descricao: "Canteiro com plantas da região que deixa a água da chuva entrar no solo.",
     temaAlvo: "alagamento",
     prazo: "3 meses",
     custo: "R$ 240 mil",
@@ -551,5 +551,5 @@ export function menorEhMelhor(tema: Tema) {
 }
 
 export function severidadeLabel(s: Severidade) {
-  return { critico: "Crítico", alto: "Alto", moderado: "Moderado", baixo: "Estável" }[s];
+  return { critico: "Muito grave", alto: "Grave", moderado: "Preocupa", baixo: "Tranquilo" }[s];
 }
