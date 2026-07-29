@@ -47,8 +47,8 @@ export function GraficoBairros() {
   return (
     <section className="rounded-md border border-border bg-card shadow-panel">
       <header className="flex items-center justify-between border-b border-border px-4 py-3">
-        <h2 className="text-sm font-semibold">Índice de criticidade por bairro</h2>
-        <span className="label-inst">0–100 por camada</span>
+        <h2 className="text-sm font-semibold">Onde os problemas são maiores, por bairro</h2>
+        <span className="label-inst">nota de 0 a 100</span>
       </header>
       <div className="h-[280px] px-2 py-3">
         <ResponsiveContainer width="100%" height="100%">
@@ -81,8 +81,8 @@ export function GraficoServicos() {
   return (
     <section className="rounded-md border border-border bg-card shadow-panel">
       <header className="flex items-center justify-between border-b border-border px-4 py-3">
-        <h2 className="text-sm font-semibold">Serviços agendados por camada</h2>
-        <span className="label-inst">{SERVICOS.length} no mês</span>
+        <h2 className="text-sm font-semibold">Serviços marcados, por tema</h2>
+        <span className="label-inst">{SERVICOS.length} neste mês</span>
       </header>
       <div className="h-[280px] px-2 py-3">
         <ResponsiveContainer width="100%" height="100%">
@@ -115,7 +115,7 @@ export function ResumoConflitos() {
   return (
     <section className="rounded-md border border-border bg-card shadow-panel">
       <header className="border-b border-border px-4 py-3">
-        <h2 className="text-sm font-semibold">Conflitos de agenda</h2>
+        <h2 className="text-sm font-semibold">Serviços que atrapalham uns aos outros</h2>
       </header>
       <ul className="divide-y divide-border">
         {tipos.map((t) => {

@@ -15,17 +15,17 @@ import { ArrowDownRight, ArrowUpRight, CalendarDays, MapPinned, MessageSquareTex
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Dashboard | Ilha Inteligente — Recife" },
+      { title: "Visão geral | Ilha Inteligente — Recife" },
       {
         name: "description",
         content:
-          "Painel de apoio à decisão para gestores públicos: alagamento, calor urbano, arborização e patrimônio na Ilha do Recife.",
+          "Painel simples para quem cuida da cidade: enchente, calor, árvores e prédios históricos na Ilha do Recife.",
       },
-      { property: "og:title", content: "Dashboard | Ilha Inteligente — Recife" },
+      { property: "og:title", content: "Visão geral | Ilha Inteligente — Recife" },
       {
         property: "og:description",
         content:
-          "Monitoramento e simulação de riscos climáticos e urbanos na Ilha do Recife.",
+          "Veja o que precisa de atenção hoje na Ilha do Recife e teste melhorias antes de fazer a obra.",
       },
     ],
   }),
@@ -47,10 +47,10 @@ function Dashboard() {
       <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-5">
         <div>
           <p className="label-inst">{perfil.secretaria}</p>
-          <h1 className="mt-1 text-2xl font-semibold">Visão consolidada da Ilha do Recife</h1>
+          <h1 className="mt-1 text-2xl font-semibold">O que precisa de atenção hoje</h1>
           <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-            Dados capturados por frota multimodal (drones e bikes Gira com câmeras e sensores) e
-            processados na plataforma de monitoramento. Painel priorizado para{" "}
+            Drones e bikes Gira com sensores percorrem a ilha e trazem os dados. A plataforma
+            organiza tudo nesta tela. Para o seu setor, aparece primeiro o tema{" "}
             <span className={TEMA_TEXT[destaque]}>{TEMAS[destaque].nome.toLowerCase()}</span>.
           </p>
         </div>
@@ -59,20 +59,21 @@ function Dashboard() {
             to="/mapa"
             className="inline-flex items-center gap-2 rounded-sm bg-primary px-3.5 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            <MapPinned className="size-4" /> Abrir mapa
+            <MapPinned className="size-4" /> Ver no mapa
           </Link>
           <Link
             to="/calendario"
             className="inline-flex items-center gap-2 rounded-sm border border-border bg-card px-3.5 py-2 text-sm font-medium transition-colors hover:bg-secondary"
           >
-            <CalendarDays className="size-4" /> Calendário
+            <CalendarDays className="size-4" /> Ver calendário
           </Link>
           <Link
             to="/chat"
             className="inline-flex items-center gap-2 rounded-sm border border-border bg-card px-3.5 py-2 text-sm font-medium transition-colors hover:bg-secondary"
           >
-            <MessageSquareText className="size-4" /> Copiloto
+            <MessageSquareText className="size-4" /> Perguntar ao assistente
           </Link>
+
 
         </div>
       </div>
@@ -100,7 +101,7 @@ function Dashboard() {
               ) : (
                 <ArrowDownRight className="size-3.5" />
               )}
-              {Math.abs(ind.variacao)}% vs. semana anterior
+              {Math.abs(ind.variacao)}% em relação à semana passada
             </p>
           </article>
         ))}
@@ -117,8 +118,8 @@ function Dashboard() {
       <div className="mt-6 grid gap-5 lg:grid-cols-[1.6fr_1fr]">
         <section className="rounded-md border border-border bg-card shadow-panel">
           <header className="flex items-center justify-between border-b border-border px-4 py-3">
-            <h2 className="text-sm font-semibold">Alertas recentes</h2>
-            <span className="label-inst">priorizados por perfil</span>
+            <h2 className="text-sm font-semibold">Avisos recentes</h2>
+            <span className="label-inst">primeiro o do seu setor</span>
           </header>
           <ul className="divide-y divide-border">
             {alertas.map((a) => (
@@ -142,7 +143,7 @@ function Dashboard() {
         <div className="space-y-5">
           <section className="rounded-md border border-border bg-card shadow-panel">
             <header className="border-b border-border px-4 py-3">
-              <h2 className="text-sm font-semibold">Frota de coleta</h2>
+              <h2 className="text-sm font-semibold">Quem coleta os dados</h2>
             </header>
             <ul className="divide-y divide-border">
               {FROTA.map((f) => (
@@ -152,7 +153,7 @@ function Dashboard() {
                     <span className="font-mono text-sm">{f.ativos}</span>
                   </div>
                   <p className="mt-0.5 text-xs text-muted-foreground">
-                    {f.cobertura} · última coleta {f.ultimaColeta}
+                    {f.cobertura} · última passagem {f.ultimaColeta}
                   </p>
                 </li>
               ))}
@@ -162,7 +163,7 @@ function Dashboard() {
           <section className="rounded-md border border-border bg-card shadow-panel">
             <header className="border-b border-border px-4 py-3">
               <h2 className="text-sm font-semibold">
-                Pontos críticos — {TEMAS[destaque].nome}
+                Lugares que precisam de atenção — {TEMAS[destaque].nome}
               </h2>
             </header>
             <ul className="divide-y divide-border">
