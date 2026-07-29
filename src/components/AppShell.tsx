@@ -12,10 +12,10 @@ import { Radar } from "lucide-react";
 import type { ReactNode } from "react";
 
 const NAV = [
-  { to: "/", label: "Dashboard" },
-  { to: "/mapa", label: "Mapa & Simulador" },
+  { to: "/", label: "Visão geral" },
+  { to: "/mapa", label: "Mapa e testes" },
   { to: "/calendario", label: "Calendário" },
-  { to: "/chat", label: "Copiloto IA" },
+  { to: "/chat", label: "Assistente" },
 ] as const;
 
 
@@ -35,7 +35,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                 Ilha Inteligente
               </span>
               <span className="block text-[11px] text-sidebar-foreground/65">
-                Prefeitura do Recife · Monitoramento urbano
+                Prefeitura do Recife · Cuidar da cidade com dados
               </span>
             </span>
           </Link>
@@ -59,7 +59,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
           <div className="ml-auto flex items-center gap-3">
             <span className="hidden text-[11px] font-semibold uppercase tracking-[0.09em] text-sidebar-foreground/55 lg:block">
-              Perfil de acesso
+              Você está vendo como
             </span>
             <Select value={perfil.id} onValueChange={(v) => setPerfilId(v as PerfilId)}>
               <SelectTrigger className="h-9 w-[210px] border-sidebar-border bg-sidebar-accent text-sidebar-accent-foreground">
@@ -95,7 +95,8 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <footer className="border-t border-border bg-card">
         <div className="mx-auto max-w-[1400px] px-5 py-5 text-xs text-muted-foreground">
-          MVP demonstrativo · dados fictícios gerados para prototipagem · {perfil.secretaria}
+          Versão de teste. Os números aqui são apenas exemplos, não são dados reais ·{" "}
+          {perfil.secretaria}
         </div>
       </footer>
     </div>
